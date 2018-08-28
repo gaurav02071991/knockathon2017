@@ -1,4 +1,4 @@
-<title>Exzeo Knockathon 2017</title>
+<title>Exzeo Knockathon 2018</title>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
 <script>
@@ -53,8 +53,7 @@
 <script src="/javascripts/timer.js"></script>
 <script src="https://use.typekit.net/tco4ujm.js"></script>
 <script>
-
-    var _MS_PER_DAY = 1000 * 60 * 60 * 24;
+ var _MS_PER_DAY = 1000 * 60 * 60 * 24;
 
     $.fn.flash = function (duration, iterations) {
 
@@ -85,6 +84,7 @@
     $(document).ready(function () {
         timerSetup();
         elementSize();
+        showDeveloperMessage();
 
         $(window).on("hashchange", function () {
             window.scrollTo(window.scrollX, window.scrollY - 100);
@@ -101,26 +101,27 @@
         var timerMessage = $("#timer-message");
 
         var start = new Date();
-        var target = new Date(2017, 7, 18, 18, 30, 0, 0);
+        var target = new Date(2018, 8, 07, 18, 30, 0, 0);
         var day = dateDiffInDays(start, target);
         var time = start.getTime() + (day == 0 ? 1 : day) * 24 * 60 * 60 * 1000;
-
+       
         var underline = function (val) {
-            return '<span class="themeu">' + val + '</span>'
+            return '<span class="themeu">' + val + '</span>';
         };
+        
 
         $('.clock').countdown({
-            timestamp: time,
+            timestamp: target.getTime(),
             callback: function (days, hours, minutes, seconds) {
-                var message = "";
 
+                var message = "";
                 message += underline(days) + " day" + ( days == 1 ? '' : 's' ) + ", ";
                 message += underline(hours) + " hour" + ( hours == 1 ? '' : 's' ) + ", ";
                 message += underline(minutes) + " minute" + ( minutes == 1 ? '' : 's' ) + " and ";
                 message += underline(seconds) + " second" + ( seconds == 1 ? '' : 's' );
 
                 message += " left!";
-
+                
                 timerMessage.html(message);
             }
         });
@@ -143,31 +144,31 @@
 
         if (whatis.height() <= newHeight) {
             whatis.height(newHeight);
-            console.log("setting height for whatis");
         }
 
         if (register.height <= newHeight) {
             register.height(newHeight);
-            console.log("setting height for register");
         }
 
         if (theme.height() <= newHeight) {
             theme.height(newHeight);
-            console.log("setting height for theme");
         }
 
         if (rule.height() <= newHeight) {
             rule.height(newHeight);
-            console.log("setting height for rule");
         }
 
         if (teams.height() <= newHeight) {
-            teams.height(newHeight);
-            console.log("setting height for teams");
+            teams.height(newHeight);          
         }
 
-        $("#timer-div").css("marginTop", newHeight / 4);
-        $(".main_logo").css("height", newHeight - 650);
+        /*$("#time-div").css("marginTop", newHeight / 4);*/
+        $(".main_logo").css("height", newHeight - 450);
+    }
+
+    function showDeveloperMessage(){
+       window.clear;
+       console.log("%cYou can either watch it happen, or be a part of it.", "color: gray;font-size: 100px");
     }
 
 </script>
